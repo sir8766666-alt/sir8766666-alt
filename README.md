@@ -26,7 +26,7 @@ Turning bold ideas into functional realities with vibe coding, intelligent AI wo
 
 ### 📬 **Let's Connect**
 
-* 🐙 **GitHub** — [Surya-git-enf](https://github.com/Surya-git-enf) 💻
+* 🐙 **Primary GitHub** — [Surya-git-enf](https://github.com/Surya-git-enf) 💻
 * 💼 **LinkedIn** — [Surya Peddishetti](https://www.linkedin.com/in/surya-peddishetti-9113b829b) 🌐
 * 📸 **Instagram** — [Surya](https://www.instagram.com/itz_surya.13?igsh=MWp0YzZ6cTJyMTJ0aQ==) ✨
 * 
