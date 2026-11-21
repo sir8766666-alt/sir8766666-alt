@@ -204,8 +204,95 @@ export function makeGut({ L = 210, R = 870, r = 100, y0 = 320, rows = 5 } = {}) 
   };
   return { pts, at, draw };
 }
-/** a straight gut segment across the screen at y (close-up). Returns nothing; draw blockages on top */
-export function gutTube(y, t = 0, width = 300) {
+/** ═════════════════════════ PHONE & BATTERY (Inside Out flat look) ═════════════════════════ */
+
+/** smartphone: flat slab with screen and a tiny battery chip on it */
+export function phone(x, y, s, dark = false) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  rr(-56, -128, 112, 256, 28); ctx.fillStyle = C.ink; ctx.fill(); ctx.lineWidth = 7; ctx.strokeStyle = C.ink; ctx.stroke();
+  rr(-46, -116, 92, 232, 20); ctx.fillStyle = dark ? C.xnavy : C.white; ctx.fill();
+  ctx.lineWidth = 4; ctx.strokeStyle = C.ink; ctx.strokeRect(-40, -100, 80, 160);
+  // screen battery chip
+  ctx.beginPath(); ctx.moveTo(-16, -6); ctx.lineTo(-16, -18); ctx.lineTo(16, -18); ctx.lineTo(16, -6); ctx.closePath(); ctx.fillStyle = C.ink; ctx.fill();
+  rr(-12, -46, 24, 36, 10); ctx.fillStyle = dark ? C.yellow : C.pink; ctx.fill();
+  ctx.restore();
+}
+
+/** battery: outline case + fill bar (level 0..1). full = danger red above 0.95 */
+export function battery(x, y, s, level = 0, full = false) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  ctx.beginPath(); ctx.moveTo(-16, -12); ctx.lineTo(-16, -32); ctx.lineTo(16, -32); ctx.lineTo(16, -12); ctx.closePath(); ctx.fillStyle = C.ink; ctx.fill();
+  rr(-120, -92, 240, 160, 46); ctx.fillStyle = C.ink; ctx.fill(); ctx.lineWidth = 9; ctx.strokeStyle = C.ink; ctx.stroke();
+  rr(-112, -84, 224 * clamp(level), 144, 40); ctx.fillStyle = full ? C.red : (level > 0.8 ? C.pink : C.leaf); ctx.fill();
+  if (full) { for (let k = 0; k < 3; k++) { const an = (k / 3) * Math.PI * 2; ctx.beginPath(); ctx.moveTo(Math.cos(an) * 110, Math.sin(an) * 110); ctx.lineTo(Math.cos(an) * 150, Math.sin(an) * 150); ctx.strokeStyle = C.red; ctx.lineWidth = 10; ctx.lineCap = 'round'; ctx.stroke(); } }
+  ctx.restore();
+}
+
+/** plug going into a phone bottom */
+export function plug(x, y, s, in_ = false) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  const k = in_ ? 1 : 0.35;
+  rr(-22, -120 - 44 * k, 44, 44 + 44 * k, 14); ctx.fillStyle = C.ink; ctx.fill();
+  rr(-14, -118 - 40 * k, 28, 40 + 40 * k, 10); ctx.fillStyle = C.white; ctx.fill();
+  ctx.restore();
+}
+
+/** simple voltage line graph: points climb and flatten high */
+export function graph(x, y, s, high = false) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  const pts = [[-200, 60], [-120, 20], [-40, -40], [40, -60], [120, -62], [200, -64]];
+  ctx.beginPath(); ctx.moveTo(...pts[0]);
+  for (const p of pts.slice(1)) ctx.lineTo(p[0], p[1]);
+  ctx.strokeStyle = high ? C.red : C.leaf; ctx.lineWidth = 14; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.stroke();
+  ctx.fillStyle = high ? C.red : C.leaf;
+  for (const p of pts) circle(p[0], p[1], 7, C.ink);
+  if (high) redX(0, -64, 0.5, 1);
+  ctx.restore();
+}
+
+/** thermometer: mercury rises with heat */
+export function thermo(x, y, s, hot = false) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  rr(-20, -140, 40, 140, 20); ctx.fillStyle = C.ink; ctx.fill(); ctx.lineWidth = 7; ctx.strokeStyle = C.ink; ctx.stroke();
+  const h = hot ? 110 : 45;
+  ctx.beginPath(); ctx.moveTo(-10, -4); ctx.lineTo(-10, -4 - h); ctx.lineTo(10, -4 - h); ctx.lineTo(10, -4); ctx.closePath(); ctx.fillStyle = C.red; ctx.fill();
+  circle(0, -4 - h, 12, C.red);
+  if (hot) { for (let k = 0; k < 3; k++) { const an = (k / 3) * Math.PI * 2; ctx.beginPath(); ctx.moveTo(Math.cos(an) * 60, Math.sin(an) * 60 - 130); ctx.lineTo(Math.cos(an) * 95, Math.sin(an) * 95 - 130); ctx.strokeStyle = C.red; ctx.lineWidth = 9; ctx.lineCap = 'round'; ctx.stroke(); } }
+  ctx.restore();
+}
+
+/** toggle switch: on / off */
+export function aSwitch(x, y, s, on = false) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  rr(-70, -34, 140, 68, 34); ctx.fillStyle = on ? C.leaf : C.ink; ctx.fill();
+  const kx = on ? 52 : -52;
+  circle(kx, 0, 30, C.white);
+  ctx.restore();
+}
+
+/** crescent moon (night / overnight) */
+export function moon(x, y, s) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  circle(0, 0, 52, C.white);
+  circle(16, -6, 52, C.bg);
+  ctx.restore();
+}
+
+/** ice cube (keep it cool) */
+export function ice(x, y, s) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s);
+  rr(-30, -30, 60, 60, 10); ctx.fillStyle = C.white; ctx.fill(); ctx.lineWidth = 6; ctx.strokeStyle = C.cyan; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(-16, -16); ctx.lineTo(0, -6); ctx.lineTo(-16, 4); ctx.strokeStyle = C.cyan; ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.stroke();
+  ctx.restore();
+}
+
+/** stress / shake lines around a point */
+export function stress(x, y, s, a = 1) {
+  if (a <= 0) return;
+  ctx.save(); ctx.translate(x, y); ctx.globalAlpha = a; ctx.strokeStyle = C.red; ctx.lineWidth = 10; ctx.lineCap = 'round';
+  for (let k = 0; k < 6; k++) { const an = (k / 6) * Math.PI * 2; ctx.beginPath(); ctx.moveTo(Math.cos(an) * 40 * s, Math.sin(an) * 40 * s); ctx.lineTo(Math.cos(an) * 72 * s, Math.sin(an) * 72 * s); ctx.stroke(); }
+  ctx.restore();
+}
   const tube = () => { ctx.beginPath(); for (let x = -150; x <= 1230; x += 20) { const yy = y + Math.sin(x * 0.006 + t * 0.5) * 20; x === -150 ? ctx.moveTo(x, yy) : ctx.lineTo(x, yy); } };
   ctx.lineCap = 'round';
   tube(); ctx.strokeStyle = C.pinkDark; ctx.lineWidth = width + 30; ctx.stroke();
