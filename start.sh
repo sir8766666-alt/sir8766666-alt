@@ -1,16 +1,25 @@
-
 #!/bin/bash
 
 echo "🚀 Booting Modular AI God-Mode (OmniRoute Edition)..."
+
+# ==========================================
+# Fix global npm PATH
+# ==========================================
+export PATH="$(npm prefix -g)/bin:$PATH"
+
+grep -qxF 'export PATH="$(npm prefix -g)/bin:$PATH"' ~/.bashrc || \
+echo 'export PATH="$(npm prefix -g)/bin:$PATH"' >> ~/.bashrc
 
 # ==========================================
 # Install Core Dependencies
 # ==========================================
 echo "📦 Installing Claude Code & OmniRoute..."
 
-rm -rf "$(npm root -g)/@anthropic-ai" 2>/dev/null || true
-
 npm install -g @anthropic-ai/claude-code omniroute
+
+# Verify both commands are available
+command -v claude >/dev/null 2>&1 || { echo "❌ claude not found after npm install"; exit 1; }
+command -v omniroute >/dev/null 2>&1 || { echo "❌ omniroute not found after npm install"; exit 1; }
 
 # ==========================================
 # Install Persistent Project Skills
@@ -36,6 +45,12 @@ npx -y skills add latent-spaces/brag -y
 npx -y skills add cosmix/loom -y
 
 echo "✅ All skills installed to local .claude/skills directory"
+
+# Auto-unzip local skill zips
+mkdir -p .claude/skills
+for f in *.zip; do
+    [ -f "$f" ] && unzip -o "$f" -d .claude/skills/
+done
 
 # ==========================================
 # Configure Environment for OmniRoute
@@ -80,8 +95,8 @@ else
 fi
 
 # ==========================================
-# Launch Claude Code via OmniRoute
+# Launch Claude Code
 # ==========================================
 echo "🚀 Launching Claude Code..."
 
-omniroute launch -- --dangerously-skip-permissions
+claude --model nvidia/nvidia/nemotron-3.5-super-vl-120b-a12b --dangerously-skip-permissions
