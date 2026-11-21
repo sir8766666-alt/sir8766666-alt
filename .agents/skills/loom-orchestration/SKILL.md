@@ -1,0 +1,304 @@
+---
+name: loom-orchestration
+description: Load before spawning subagents or running a loom stage as its main agent; skip for single-agent work. Delegation cost, briefs, waits, commits.
+allowed-tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash
+  - Task
+triggers:
+  - spawn subagents
+  - spawning subagents
+  - delegate implementation
+  - subagent brief
+  - worker brief
+  - fan out
+  - file ownership table
+  - coordinator preamble
+  - worker preamble
+  - subagents watch
+  - harvest subagents
+  - orchestrator commits
+  - escalate tier
+  - two-level hierarchy
+---
+
+# Loom Orchestration
+
+The rules a session needs when it spawns subagents or runs a loom stage as its main agent, beyond what
+`~/.claude/CLAUDE.md` and the stage signal already carry, filed under the CLAUDE.md rule number they
+belong to.
+
+## Session start
+
+Read your Knowledge Brief, find your session ID in `.loom/work/signals/`, scan for `EXECUTION PLAN`
+blocks, and spawn per Rule 6; with no signal, ask the user.
+
+## Rule 4 — Commit and complete
+
+The commit is legitimate only once all three hold: (1) every subagent, coordinator, team, and
+Workflow returned and was absorbed (an abandoned subagent counts as returned only if you recorded
+why); (2) the gate is green on the complete tree (in a standard stage, your
+`loom check <stage-id>`); (3) the mini
+adversarial code review returned, every finding fixed, gate green again. In a plan version 2 stage
+`loom stage complete` enforces condition (3): it fails until a recorded review round matches the
+worktree and no finding is open. A handoff is no reason
+to commit unverified work — record uncommitted files there instead.
+
+Commit with `git add <specific-files>` then `loom stage commit <stage-id> -m "type(scope):
+description"`, and wait for it with `loom request status <id> --wait 90`; never run `git commit`.
+
+## Rule 6 — Subagents
+
+| Shape | When | Cost | Who commits | Which preamble |
+| --- | --- | --- | --- | --- |
+| **Flat fan-out** (default) | Independent file changes, separate implementation areas, tests alongside implementation, exploration; ≤~6 worker tasks | 1 spawn level | Main agent | Rule 5 |
+| **2-level hierarchy** | >~6 tasks in 2-4 DISJOINT territories, 2+ tasks each, well-defined for sonnet workers; NOT for ≤~6 tasks, shared files, cross-territory iteration, or sequential work | +1 coordinator per territory | Main agent | Coordinator preamble to coordinators; Rule 5 + worker addendum |
+| **Agent teams** | Wide, exploratory work needing inter-agent messaging or dynamic task discovery; NOT for concrete assignments with clear file ownership | ~7x whole-job | Team lead, who alone runs `loom stage complete` and `loom memory` | Rule 5 |
+
+Team lead: TeamCreate → TaskCreate → spawn → monitor (TaskList) → shutdown, gate (Rule 4), complete;
+delegate, keep context <40%, shut down ALL teammates. The ≤~6 threshold counts grouped subagents.
+
+Two subagents never write one file; serialize in one subagent or split stages. Every prompt carries a file-ownership table:
+
+| Subagent | Files Owned (write) | Files Read-Only | Shared context — quoted in the brief, do not open |
+| --- | --- | --- | --- |
+| Subagent 1 — [role] | `path/to/files` | `shared/config` | `patterns.md#<heading>` |
+| Subagent 2 — [role] | `other/files` | `shared/config` | `patterns.md#<heading>` |
+
+**Declared skills.** A stage may list `skills: [<skill-name>, ...]` (full names, such as
+`loom-rust`; `loom plan verify` rejects an unknown name). Pass declared skills and their signal-named invocation to applicable Claude briefs.
+For Codex, quote applicable rules in briefs; it does not open skills.
+
+**Sibling-read ledger.** Each agent writes its reads ledger to
+`$LOOM_WORK_DIR/hooks/reads/<LOOM_SESSION_ID>/<agent-id>.tsv` (outside a stage, a per-session
+directory under `${TMPDIR:-/tmp}/loom-reads/`). When a subagent reads whole a file of over 200
+lines that a sibling already requested whole and unchanged, the read guard appends
+`<absolute path>\t<lines>\t<agent count>\t<UTC timestamp>` to that directory's `_shared.tsv`
+(the latest row per path is current). Before the next briefs, read it: a file
+several subagents each read whole belongs in the brief as quoted `file:line` ranges.
+
+**Checking on subagents: use one owned `loom subagents` wait, never a hand-rolled poll loop.** Spawn every worker first and capture each worker ID: the Claude agent ID from the spawn result, or the Codex unit ID you assigned with `--unit-id`. Then run ONE `loom subagents watch --worker claude:<agent-id> --worker codex:<unit-id> --timeout 3600` through the Bash tool's `run_in_background`, with one `--worker` for every worker. It binds those workers once, holds one lease for the parent session, prints one initial record and one terminal record, then exits. Treat its exit distinctly:
+
+1. **Exit 0** — every bound worker has fresh, correlated success evidence.
+2. **Exit 2** — the wait deadline passed. This is not proof that any worker died.
+3. **Exit 3** — a bound worker failed or was cancelled.
+4. **Exit 4** — a wait for this parent session already exists: `AlreadyWaiting` for the same worker set or `Busy` for a different set. No second monitor was started.
+5. **Exit 5** — worker identity or terminal evidence is unknown. This is never success.
+6. **Exit 6** — a bound worker is hung: no transcript growth past the stall budget (`--stall-secs`, default the stage's `subagent_timeout_secs`, else 600 s) for a Claude worker, or a codex job whose process is gone or whose log stopped growing. `TaskStop` the Claude worker, confirm it stopped, then RE-DELEGATE the remainder in a smaller brief.
+
+Harvest each worker's terminal report exactly once. Never re-arm the watch and never poll with `loom subagents list`, `loom subagents harvest`, `git status`, `wc`, or `ls`; `list` and `harvest` remain one-shot diagnostics. Only exact authoritative terminal evidence permits completion. Exit 6 is the channel that reports a worker idle past the stage's `subagent_timeout_secs` budget with no transcript growth — a stall signal, not proof of termination. `TaskStop` it, confirm it stopped, then RE-DELEGATE the remainder to a fresh subagent. Never absorb the work into yourself — the orchestrator decomposes, delegates, owns the gate, and commits; it does not implement (hard stop 6). Re-read the tree before writing the new brief: a stale brief is worse than no brief. Never complete the stage while any subagent is still out (Rule 4).
+
+**2-level cap:** main agent → coordinators → workers. Spawn coordinators as `general-purpose` with
+a `model` override — the engineer agent types carry no Task tool and run as leaves, so
+they cannot coordinate. Spawn workers BY AGENT TYPE — inside a stage untyped spawns are denied; outside one the spawn guard gives them `sonnet`.
+Coordinators delegate too (hard stop 6), going opus only when territory integration needs
+judgment. Mix lanes under ONE ownership table. On a stage listing codex in `implementers`, the
+signal's Codex Implementers section names the launch: on the forwarder lane a coordinator spawns
+`loom-codex-forwarder` BY AGENT TYPE (never the plugin's `codex:codex-rescue` directly), foreground
+only; on the native lane only the main agent runs `loom subagents start`. Codex takes
+straightforward well-specified pieces: gpt-6.1-terra for
+implementation, integration tests, boilerplate and simple unit tests; gpt-6.2-sol for substantial
+units and a failed terra unit; gpt-6-luna only when the user or the plan asks. The lane is chosen
+per piece, never per stage; the coordinator still does not verify.
+
+With an `EXECUTION PLAN` block, parse ALL assignments and spawn ALL in ONE message; hierarchical
+plans spawn COORDINATORS, not workers. Every prompt carries the preamble, assignment, files
+owned/read-only, acceptance, task detail. "Sequential" means execute in order with explicit
+dependencies.
+
+COORDINATOR PREAMBLE — start every coordinator prompt with it. Its Rule 5 opening
+prevents an extra guard preamble:
+
+```text
+CLAUDE.md is already in your context; the rules below are the ones that bind you as a subagent. The knowledge you need for this task is quoted in this brief - do not open doc/loom/knowledge/ unless the brief says a pull came back empty.
+
+COORDINATOR ROLE - YOU ARE A SUBAGENT COORDINATING WORKERS (ONE LEVEL ONLY):
+- You own ONE territory: [TERRITORY]. Never touch files outside it.
+- Partition your territory into DISJOINT worker file sets - shared writes = LOST WORK
+- Spawn workers via the Task tool BY AGENT TYPE (loom-software-developer = haiku; loom-software-engineer = sonnet) and never pass `name`; include the WORKER PREAMBLE as the first lines of EVERY worker prompt; spawn independent workers in ONE message
+- Workers NEVER spawn subagents - LEAVES in loom's 2-level tree
+- Delegate implementation; write at most small glue/fixes within your territory
+- Compile freely. Test workers' code and module when confident it is ready; never the full suite. The gate runs it. Integration-verify full runs use `loom check integration-verify [--criterion <n>]`, never a bare runner. The main agent fixes.
+- Return files changed, verification command + result, failures/blockers, insights; no file dumps or diffs.
+- NEVER run git commit, git add -A/., or loom stage complete - the main agent commits with `loom stage commit`
+- Record insights via loom memory note/decision; NEVER use Claude Code auto-memory
+```
+
+WORKER PREAMBLE — the Rule 5 preamble first (the spawn guard prepends it when the prompt lacks
+it), then this, with no second no-verify block:
+
+```text
+WORKER RESTRICTIONS - YOU ARE A LEAF AGENT:
+- NEVER spawn subagents (Task tool) - the hierarchy is capped at 2 levels; do the work yourself
+- Touch ONLY your assigned files: [FILES]
+- Return a short report: what changed, anything surprising, anything unresolved
+```
+
+After each wave of workers returns, the main agent compiles the tree once before the next wave or the gate.
+
+## Rule 7 — Model allocation
+
+1. DELEGATION IS A COST DECISION: TOKENS TIMES MODEL TIER (hard stop 6). A
+   stage's main agent decomposes the work, briefs subagents, owns the gate and
+   commits. A spawn costs a written brief, the subagent's boot (about 28,000
+   tokens before it reads anything) and a harvest turn. The main agent makes a
+   change itself only when ALL of these hold: at most 20 changed lines, in at
+   most 2 files it has already read this session, no further exploration, and
+   one command proves it. Anything larger is delegated. A main session running
+   FABLE delegates even those: a cheaper tier can do them, and every fable turn
+   costs more than the spawn.
+2. INVESTIGATION ENDS IN A BRIEF OR IN A SMALL CHANGE. The moment you finish
+   reading the code and know what the fix is, apply point 1's test. If it
+   fails, you are at the delegation boundary: write the understanding down
+   (file:line, root cause, the change to make, signatures, patterns to match,
+   acceptance) and spawn. The diagnosis being yours does not make a large
+   change yours.
+3. EVERYTHING BEYOND POINT 1 IS DELEGATED, to as FEW subagents as the work
+   allows, at the CHEAPEST tier that can do the piece. Size each assignment so
+   the subagent typically finishes under about 400,000 tokens, and never split
+   below what that needs: every extra spawn pays the boot cost again. Pick PER
+   SUBAGENT by what that piece needs, never once for the whole stage, and
+   default downward. HAIKU (loom-software-developer, effort high): a piece
+   that is extremely simple, or whose brief is highly detailed — files,
+   exact change and acceptance stated. Never haiku: an open decision, a bug
+   of unknown cause, concurrency, security-sensitive code, a data-loss path.
+   Spawn `Explore` with `model: haiku` for locate-only sweeps (paths, symbols,
+   call sites, where a string occurs); the default sonnet when the answer
+   requires reading behavior. CODEX (effort xhigh) takes
+   straightforward, well-specified implementation (one concern, pinned
+   interfaces, mechanical acceptance, no git, no `.loom/`) when the stage lists
+   codex in implementers, the lane is available and quota has
+   room. No lane is first or default; list order means nothing. Verification,
+   review, planning, exploration, debugging and iteration on failing tests
+   stay with Claude. gpt-6.1-terra: implementation, integration tests,
+   boilerplate, scaffolding and simple unit tests; gpt-6.2-sol: a substantial
+   well-specified unit (about 4 to 6 file-sized changes) or a terra unit that
+   failed once; gpt-6-luna only when the user or the plan asks. Otherwise
+   terra- and sol-tier work goes to sonnet, and boilerplate and simple unit
+   tests to haiku. SONNET (loom-software-engineer): pieces that need exploration or the
+   initial iteration on failing tests, or are too large to brief in that
+   detail. A piece between sonnet and opus goes to sonnet.
+   OPUS (loom-senior-software-engineer, effort medium)
+   implements architecture across modules, new algorithms, concurrency,
+   distributed systems, security-sensitive code, bugs of unknown cause. It
+   takes no visual or CSS fixes, no fixes for review findings in code sonnet,
+   haiku or codex wrote (those return to the tier that wrote the piece and
+   escalate only on a failed fix), and no mainstream feature code. The
+   orchestrator passes no `effort` on a first attempt. FABLE implements only
+   visual/UI design and extremely challenging algorithmic design. In a standard
+   stage the GATE is the orchestrator's single `loom check` (a fix round
+   re-checks with `--criterion <n>`); an integration-verify stage runs the
+   gate its own signal names. Either way the orchestrator owns fixes and the
+   commit. Spawn BY AGENT TYPE.
+4. FAILURE MOVES THE WORK UP ONE TIER. A failure misses clear acceptance:
+   a failing test, a correctness finding. A vague brief, or a worker that
+   stopped on an open decision, is an orchestrator failure: complete the
+   brief and respawn the same tier.
+   Settle every decision one lookup would answer before choosing a tier; one
+   left open is no reason to pick sonnet over haiku. A real failure moves up
+   one tier with every attempt and its evidence in the new brief: haiku,
+   sonnet, opus at effort medium, opus at `effort: high`; codex terra, sol,
+   then Claude at the tier the piece needs. Never skip a tier or rerun one on
+   the same failure.
+5. THE LADDER ENDS AT `loom-advisor` (fable, read-only), RARELY: spawn it
+   only after an opus implementer failed at effort high, typically a stubborn
+   bug, with every attempt. Its diagnosis goes to an opus implementer at
+   `effort: high`.
+
+A signal's `## Model Budget` `Routing:` line directs lane choice; it never overrides `implementers`,
+the codex-unavailable instruction or the tier this rule names.
+
+Keep each assignment within point 3's size; decompose via Rule 6 rather than escalating for
+context headroom. The cheaper the tier, the fuller the brief: paths, `file:line` ranges,
+signatures, patterns, steps, per-step acceptance, decisions settled, traps named. A brief to an
+opus or fable worker names `file:line` ranges. Never paste code
+the worker can open. Plan authors: rubric in
+`/loom-plan-writer`.
+
+## Plan version 2 stages
+
+The signal names contracts, review gate and carried findings; this is the flow.
+
+**Contracts** (standard stages with `contracts`). Never edit a frozen file; name them read-only in
+every brief. `loom stage contracts show|restore <stage-id>` prints or restores the frozen files.
+Contracts run in loom's confinement (no network, writes only in the worktree and TMPDIR, no nested
+sandbox): run `loom check <stage-id> --contracts` once they compile; a plain `loom check
+<stage-id>` runs them after the goal-backward checks. A wrong contract is disputed; a frozen file
+changes only by replacement: copy it to `$LOOM_SCRATCH_DIR`, edit the copy, format-check it,
+trial it with `loom check <stage-id> --contracts --replacement <frozen-file>=<path>`, then file
+ONE `loom stage dispute-contract <stage-id> --contract <id>... --replacement <frozen-file>=<path>
+--reason "..."` for all affected contracts (refused without a passing trial of those bytes at
+HEAD). An accept writes it to the worktree.
+
+**The review loop** (standard and integration-verify stages):
+
+1. Spawn `loom-code-reviewer` BY AGENT TYPE, without `name` or model override.
+   The guard uses `models.code_reviewer_model` (opus by default) for the first round,
+   `models.code_reviewer_followup_model` (sonnet by default) for later rounds.
+   Only this type records rounds. Its hook reads the `loom-review` block from its
+   `SubagentHandback` report, else its final message. Invalid/missing blocks do not count. Reviewers lack the signal:
+   paste the stage's acceptance criteria (with `exit_code` and `stdout_contains` where set)
+   and its description into every reviewer brief.
+2. Send all findings of a round to ONE fix worker before ONE re-review on the follow-up model.
+   Brief with `loom stage review status <stage-id>`: rounds, all open finding ids
+   (own and carried), tree match and changed files. Review changed files and findings; list each open id under `resolved` or `unresolved`.
+3. Findings block completion at every severity; suggestions do not. Fix and re-review
+   or dispute each finding. A later `resolved`, or a judge's `dismiss` or `defer`,
+   closes it; `uphold` leaves it open.
+4. Dispute a round in one command:
+   `loom stage dispute-findings <stage-id> --finding <id> ... --reason "..."`.
+   Filing ends the session; a verdict that upholds no finding lets the daemon complete a passing tree. A fourth dispute of a kind means `NeedsHumanReview`.
+
+**Review order (plan v2):** run `loom check` once beside the final review. One fix worker handles all findings and failed criteria; re-check failures with `loom check <stage-id> --criterion <n>`, then one re-review on the follow-up model, then complete. After the final round, code edits including formatting need re-review. Comment-only lines, blank lines, and prose markdown outside skills/, agents/, commands/, loom-hooks/, tests and fixtures need none; the base must be unchanged. Block comments and every other edit need re-review. Commits do not change it.
+
+**Test integrity** (standard, integration-verify). Completion compares test files to base.
+Fewer declarations or assertions in a language, assertion statements lost or changed in a test file
+at base (a reflow or a lowered ledger entry does not count; an identical move into a collected file
+cancels, an edited move or one into an undeclared file raises TI-edit), or a loosened
+`ratchet_files` entry each raise an event; `loom stage review integrity <stage-id>` lists them.
+Revert the cause or dispute: `loom stage dispute-integrity <stage-id> --event <id> ...`. Reviewers
+see them; fix their findings before the final round. An accepted count event holds while its total
+does not drop; accepted TI-edit and TI-ratchet events pin the file's sha256, so a later edit reopens them.
+
+**What `loom stage complete` checks, in order.** The host job runs acceptance first; only a pass continues to steps 2 to 6,
+each of which runs even after an earlier one failed, so one run names every failing check. Steps 7
+and 8 are the daemon's, run once on a passing run.
+
+1. The acceptance criteria. A criterion whose test runner selected zero tests fails.
+2. The goal-backward checks: `artifacts`, `wiring`, `wiring_tests`, the dead-code check and
+   `reachable`. A stage whose only goal-backward check is `reachable` skips this step.
+3. Standard stages with contracts: every frozen file matches its frozen hash, and every contract
+   test passes.
+4. Standard stages: the tests that reach the stage's changed code pass. A test loom cannot select
+   or run only prints a note, and so does a selection whose tests fail at the stage's base with
+   at least as many failures counted (a build failure or unreadable output at both still fails).
+   A failure the stage did not cause is disputed, never blocked:
+   `loom stage dispute-criteria <stage-id> --field impact-tests --test <id> ... --reason "..."`,
+   with the ids (`IT-<runner>:<package>`) the last failing run of the exact
+   `loom stage complete <stage-id>` listed. An accepted failure stays accepted while it gets no worse.
+5. Integration-verify: every completed stage's `reachable` checks, re-run on the merged tree.
+6. The checks every stage gets: `after_stage` commands, unwired files and duplicate symbols. Integration-verify also re-runs every completed stage's `wiring` checks.
+7. Test integrity (standard and integration-verify), applied by the daemon.
+8. The review gate (standard and integration-verify), applied by the daemon: the latest
+   well-formed round matches the current change fingerprint, and no finding, own or carried, is
+   open.
+
+**Integration-verify.** Its signal lists every pending reviewer suggestion of the plan's stages,
+with its id. Consider each one: implement it, or leave it pending for knowledge-distill to record.
+Resolve each one you implement with
+`loom memory resolve <id> --outcome implemented --reason "<what changed>"`. Integration-verify
+never defers a finding: fix it or dispute it. A `defer` ruling on its dispute is turned into a
+request for more evidence.
+
+## Reference
+
+**Stage lifecycle:** `WaitingForDeps → Queued → Executing → Completed → Verified` (also `Blocked`,
+`NeedsHandoff`, `WaitingForInput`). Retry a failed merge: `loom stage merge <stage-id>`.
+
+**Handoff** (`.loom/work/handoffs/YYYY-MM-DD-desc.md`, written by `loom handoff` per Rule 3):
+`# Handoff: [Description]`, `**Stage**: [id]`, `## Completed` with file:line refs, `## Next Steps`
+prioritized.
+
+**References:** cite code as `src/auth.ts:45-120`, not "the auth file".

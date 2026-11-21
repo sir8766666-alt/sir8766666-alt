@@ -1,0 +1,749 @@
+{
+  "version": 2,
+  "skills": {
+    "agent-reach": {
+      "source": "Panniantong/Agent-Reach",
+      "commit": "c70ae6da5d39bc90e09ad2ae0575ccc89f31e284",
+      "sourceType": "github",
+      "skillPath": "agent_reach/skill/SKILL.md",
+      "computedHash": "05fdf9ff0759d7020c0c153d7a6963787fe93d89d25f016c41065a006340b5b0"
+    },
+    "api-security-testing": {
+      "source": "usestrix/strix",
+      "commit": "a1ccf777d80e812edf23fc8b82bdc17def6143ac",
+      "sourceType": "github",
+      "skillPath": "skills/api-security-testing/SKILL.md",
+      "computedHash": "32f365479f3446fff784b2ccc48b5115cd06e27be980de90824638779d78c48b"
+    },
+    "application-security-testing": {
+      "source": "usestrix/strix",
+      "commit": "a1ccf777d80e812edf23fc8b82bdc17def6143ac",
+      "sourceType": "github",
+      "skillPath": "skills/application-security-testing/SKILL.md",
+      "computedHash": "28c343b8c5cf3dd8daf7dda199d387761132b80f47648eb8aeb08502e158c446"
+    },
+    "brag": {
+      "source": "latent-spaces/brag",
+      "commit": "06379432a9243c951dfcc051153be18d2d261044",
+      "sourceType": "github",
+      "skillPath": "skills/brag/SKILL.md",
+      "computedHash": "031ed3d7176bd3808b031595bd2d5b46072375b54a23a78c02e5cdc137191c90"
+    },
+    "brag-slim": {
+      "source": "latent-spaces/brag",
+      "commit": "06379432a9243c951dfcc051153be18d2d261044",
+      "sourceType": "github",
+      "skillPath": "skills/brag-slim/SKILL.md",
+      "computedHash": "dfdaf2ec5dd2f10efbb169350b228b58fb5cab03d2f2079e26cbbba5e0fea0e7"
+    },
+    "brainstorming": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/brainstorming/SKILL.md",
+      "computedHash": "a7424777b7f81e3eb9b4556d29fe233553736d8255780d3e1feea190fef61fef"
+    },
+    "ci-security-scanning-with-strix": {
+      "source": "usestrix/strix",
+      "commit": "a1ccf777d80e812edf23fc8b82bdc17def6143ac",
+      "sourceType": "github",
+      "skillPath": "skills/ci-security-scanning-with-strix/SKILL.md",
+      "computedHash": "13949ab1e24f8cac87a11b221e55e52e6bfcf712ccd9eaeefeae4e3608c70d44"
+    },
+    "claude-automation-recommender": {
+      "source": "anthropics/claude-plugins-official",
+      "ref": "main",
+      "commit": "73c8cf3ea7e296057b467990f2f5d61b4c922260",
+      "sourceType": "github",
+      "skillPath": "plugins/claude-code-setup/skills/claude-automation-recommender/SKILL.md",
+      "computedHash": "77eacdf8f94c87706f3d840ddd94aa246a0d9b83201d6249dce2d7584112afe5"
+    },
+    "diagnosing-superpowers": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/diagnosing-superpowers/SKILL.md",
+      "computedHash": "44d0295c3d59d6418f80c96e40d8e7b7ece99513ab6e63e5d04b1cf87cc5bbab"
+    },
+    "dispatching-parallel-agents": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/dispatching-parallel-agents/SKILL.md",
+      "computedHash": "d799e464fdfb0edc80b3b7ad7cce03e64ee07fc5db231c988688a81438503659"
+    },
+    "executing-plans": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/executing-plans/SKILL.md",
+      "computedHash": "58b364f6e3f64602c7cfd0b34ceaad9de95d41fe7e4b46b274843ba19fc01ccc"
+    },
+    "find-security-vulnerabilities-in-code": {
+      "source": "usestrix/strix",
+      "commit": "a1ccf777d80e812edf23fc8b82bdc17def6143ac",
+      "sourceType": "github",
+      "skillPath": "skills/find-security-vulnerabilities-in-code/SKILL.md",
+      "computedHash": "d9ea567e93b8add3991b0c43c1b9f3ea604c6c53e0f88ef4bcec3be9e616efac"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "commit": "57217cf86ba38148a57af9e90d14a4c049558330",
+      "sourceType": "github",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "computedHash": "7bc223e2aafbdbf6e50ea243ba6ef67fe432bb069ab439fea0390795dac0bf7f"
+    },
+    "finishing-a-development-branch": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/finishing-a-development-branch/SKILL.md",
+      "computedHash": "7e24d821d45b8f10773edd9f1a4be2fac90eedae4f8fc8e70e34e27e44d3f3c0"
+    },
+    "fix-security-vulnerabilities-with-strix": {
+      "source": "usestrix/strix",
+      "commit": "a1ccf777d80e812edf23fc8b82bdc17def6143ac",
+      "sourceType": "github",
+      "skillPath": "skills/fix-security-vulnerabilities-with-strix/SKILL.md",
+      "computedHash": "7febe815c271b39c688d583efef9a4f9674eaed063264f7218c7c67aacbd7abe"
+    },
+    "loom-accessibility": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-accessibility/SKILL.md",
+      "computedHash": "e342e50478860a8552e3b07e669a743d173603c552d3462d58fbd149331bbe90"
+    },
+    "loom-api-design": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-api-design/SKILL.md",
+      "computedHash": "ea828f4781a82ad242cbb5e1cbdf641605375456b3960c56c4d030304921e739"
+    },
+    "loom-api-documentation": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-api-documentation/SKILL.md",
+      "computedHash": "765370c008f21de8cd37f99ef22d169ad3440825043c28c54fd673070d063bce"
+    },
+    "loom-argocd": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-argocd/SKILL.md",
+      "computedHash": "d4921388256c099b692be6a90dfce533c095bfd0cd2ce008ac23cde7b659dfdf"
+    },
+    "loom-auth": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-auth/SKILL.md",
+      "computedHash": "596e0d5c45b873612eb208ff90d29e89f9d2acabded3404093aa672e8a43005e"
+    },
+    "loom-background-jobs": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-background-jobs/SKILL.md",
+      "computedHash": "167180f3184303f4ef825d52f05bf5030932c397ec96a6f2b967096beb1b00ec"
+    },
+    "loom-before-after": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-before-after/SKILL.md",
+      "computedHash": "daf2a7a1b8b60919d27b39aefe00eced8346e280d98def91e6bc6c85462bf525"
+    },
+    "loom-c": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-c/SKILL.md",
+      "computedHash": "328b503458f975413a2ea68c1888d631ff53f7d0cfe4a238ce8d3d4607564d32"
+    },
+    "loom-caching": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-caching/SKILL.md",
+      "computedHash": "0417da534cfed4b2b3a026c7fd29400236f70f4b6142c1f3f25ca3c7609d213e"
+    },
+    "loom-ci-cd": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-ci-cd/SKILL.md",
+      "computedHash": "0782777d6d9b28e1912f696108121bd580f3638f28c14b22217283dfa0ae2d82"
+    },
+    "loom-code-migration": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-code-migration/SKILL.md",
+      "computedHash": "9d0031bc5a369e6797184fa4dd227ac0382e685c3353bba6512f29326abb5354"
+    },
+    "loom-code-review": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-code-review/SKILL.md",
+      "computedHash": "f0ad5f1aebd8f2a332eeb223f06b6e589808cca9c5b3cd03edddf0244ccc1aba"
+    },
+    "loom-concurrency": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-concurrency/SKILL.md",
+      "computedHash": "7cab4bff9856b1e7c0e71d34de8320a2a4078d978e6d7f1dc0310b682a1df841"
+    },
+    "loom-cpp": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-cpp/SKILL.md",
+      "computedHash": "1ada2b7891a01ff0526d4820ded5ce603ca61e4231aee17be27abeb6aac8a768"
+    },
+    "loom-crossplane": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-crossplane/SKILL.md",
+      "computedHash": "d3a77370d671391b9348aff0000c5c6e5e73d22ae5ae18bd32badbb68bdd4b50"
+    },
+    "loom-csharp": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-csharp/SKILL.md",
+      "computedHash": "bbb2f7b0cfffaac9e8dd09ac99672d2afd84d5cbbec5062a92a9c5c67dff99db"
+    },
+    "loom-dart": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-dart/SKILL.md",
+      "computedHash": "e3751fe1cd9a5c4f233d07236affd3ee5099086c1b10c6a98e8f73ab65a9d95d"
+    },
+    "loom-data-validation": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-data-validation/SKILL.md",
+      "computedHash": "00ddd84afa85834d5e3561898253e4136cda5360edd55f0a809f1180ae6ecb2f"
+    },
+    "loom-data-visualization": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-data-visualization/SKILL.md",
+      "computedHash": "45bb277a9f6da2b9d620b3ca56d86523e875465fc6d07e75da8e9c680ad2a8d6"
+    },
+    "loom-database-design": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-database-design/SKILL.md",
+      "computedHash": "1dc8d72db438f519aa233b4b9d1df3586df8f8d599aec09e7b1b2b576e1975ce"
+    },
+    "loom-dead-code-check": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-dead-code-check/SKILL.md",
+      "computedHash": "c8ffaf560627816b83ed007048b99beff025a33272294ed15b9c9d45f2037c99"
+    },
+    "loom-debugging": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-debugging/SKILL.md",
+      "computedHash": "d2501912c1cee165b6095618976119c5d4fba2a4217c3b7e0a5bc629305b47d5"
+    },
+    "loom-dependency-scan": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-dependency-scan/SKILL.md",
+      "computedHash": "1d79615e6af2eb96b101d01d1d5de5e17a0ecabebfdaf82c6c740bfa90660008"
+    },
+    "loom-diagramming": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-diagramming/SKILL.md",
+      "computedHash": "d88255cf0e1e5c12334683c4c9ad7bf998a31b0bb6714f31b05776fabdf7cb36"
+    },
+    "loom-docker": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-docker/SKILL.md",
+      "computedHash": "faff72034448cc8699fc1a5e952e74161d6f5ea222431667541a8641be180961"
+    },
+    "loom-documentation": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-documentation/SKILL.md",
+      "computedHash": "d0a31ce1f141b41e7337b20deafb834cbee3460c302c1341eac71a1b52eb8c4b"
+    },
+    "loom-e2e-testing": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-e2e-testing/SKILL.md",
+      "computedHash": "5d6f16ffdbde828eb34bb866f05a5831554622efda8d2d3f2d396e50afdca672"
+    },
+    "loom-elixir": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-elixir/SKILL.md",
+      "computedHash": "45754ee750ddd7cd0cc69011a88229a125969d01c884f5b3c4a66a0e5b29951f"
+    },
+    "loom-error-handling": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-error-handling/SKILL.md",
+      "computedHash": "adb018d0faa55a8cce8b8b6ea09db2f4a1a3d2c7f29e87834b621fd5554a8cf7"
+    },
+    "loom-event-driven": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-event-driven/SKILL.md",
+      "computedHash": "63a17f913bb462f9d9a1b184595ac67ececfb63b744509f9ad312613e55940fd"
+    },
+    "loom-feature-flags": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-feature-flags/SKILL.md",
+      "computedHash": "cd0ef94f075fafabc2fb0e99158b09fa35bff07d3a259c0ef7c9493d37eda41f"
+    },
+    "loom-fluxcd": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-fluxcd/SKILL.md",
+      "computedHash": "6bd8a114a200db220656916b09b25fb8cbe1c3f7bfc16f943920c8520652f20f"
+    },
+    "loom-git-workflow": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-git-workflow/SKILL.md",
+      "computedHash": "bbd4acef0211cba433c45e80f62064c74c874b96a2f3a395c8c05ec56cb37b72"
+    },
+    "loom-golang": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-golang/SKILL.md",
+      "computedHash": "bdd127c0e356bb07f87741401c31e83b6ff7cf31da0861e4cc553caed858ed6d"
+    },
+    "loom-grafana": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-grafana/SKILL.md",
+      "computedHash": "6100895957d0641c7c9fffd2daaef20a2491b05e85673608f0d19d536063f8f3"
+    },
+    "loom-i18n": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-i18n/SKILL.md",
+      "computedHash": "87baa25c710e93bbfd445f23eb02a80715b9fd56f843885c2772f09befa8fd5e"
+    },
+    "loom-istio": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-istio/SKILL.md",
+      "computedHash": "db12d95143ef443d98d9d9e2a1cadcb7fe8e62b897a214658b718847ccb6fdc7"
+    },
+    "loom-java": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-java/SKILL.md",
+      "computedHash": "beae9da337af766e99c8075797f523c372ac01c2a02f68a367f8f0a073c1f78b"
+    },
+    "loom-javascript": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-javascript/SKILL.md",
+      "computedHash": "f0e94e95bda2ae9fc4147d66cd113bd1c68a798b879f606056950c78d77f43d8"
+    },
+    "loom-karpenter": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-karpenter/SKILL.md",
+      "computedHash": "688f529d16b2da9a01318baa5d736e410a8305d78bf84b84765b78e233071afb"
+    },
+    "loom-kotlin": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-kotlin/SKILL.md",
+      "computedHash": "d917e517175df70956d0d69ea49a89ae77d2283a751fbca070ae3994498aeeec"
+    },
+    "loom-kubernetes": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-kubernetes/SKILL.md",
+      "computedHash": "b093b961130f2982b5f0e2446463cbe43c72ef914751f8a46af39211822d22c6"
+    },
+    "loom-kustomize": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-kustomize/SKILL.md",
+      "computedHash": "f72b3ab48d6c83be3f8b9af9cbc7ad208284bf28a7b7605e7b8bbae4e26f0695"
+    },
+    "loom-logging-observability": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-logging-observability/SKILL.md",
+      "computedHash": "b75b2b71d2d6a8862f8960138f3ad89b0392a1538199a010d66243f4352b92ab"
+    },
+    "loom-md-tables": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-md-tables/SKILL.md",
+      "computedHash": "b5445b9ffbdfbc55be6fda3a4fd7de7732a44258236bf4fa9742f67b68631186"
+    },
+    "loom-model-evaluation": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-model-evaluation/SKILL.md",
+      "computedHash": "07fea860fe6b32f41ebac3d29d31b80b754cae78428728e8320b86423d62d3e0"
+    },
+    "loom-orchestration": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-orchestration/SKILL.md",
+      "computedHash": "57e032d9c21a08c6b2b6246f5e709f2c52a388806a05e6752c3cdf6a0f7e3b24"
+    },
+    "loom-performance-testing": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-performance-testing/SKILL.md",
+      "computedHash": "c60ec27efb6e7046b78851dc56bbd4e8ff8005214e38a5dd4830e028ae8d5701"
+    },
+    "loom-php": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-php/SKILL.md",
+      "computedHash": "10c5a47c46b47dde1d104f0f2cf2336f80c7359837987e68e4620cd9b3bc99a0"
+    },
+    "loom-plan-writer": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-plan-writer/SKILL.md",
+      "computedHash": "937ace0f56f861aac21893c82ca4c8615dbafc53f3741f251b0d4ef9b5df92f7"
+    },
+    "loom-prometheus": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-prometheus/SKILL.md",
+      "computedHash": "9b751b0bac07b3782ac4380ee8984b06247ff4ca85b83dc7c3c45b43ab6f232e"
+    },
+    "loom-prompt-engineering": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-prompt-engineering/SKILL.md",
+      "computedHash": "faf2fdf7550ac11bf90d44ebc24ee7953657d2c57fd3e8755ea1c9373b019bd0"
+    },
+    "loom-python": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-python/SKILL.md",
+      "computedHash": "616a5f6e409eb4a245d9773bb4115eeec11e72a07dc7a84f975f89959991cdd6"
+    },
+    "loom-rate-limiting": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-rate-limiting/SKILL.md",
+      "computedHash": "6093f7ff6811dab35a23cd64cb46aa64e412aeb1b01a894da0b19d8c11cd23ee"
+    },
+    "loom-react": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-react/SKILL.md",
+      "computedHash": "bd9795f1001be9da47065a486c10705f588575ca6b54cca59e23f1fd22ac152f"
+    },
+    "loom-refactoring": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-refactoring/SKILL.md",
+      "computedHash": "baa823b48d6f666433997c7dc4a7ecf99d10a67a2a1e9f6062761c0b0fb64452"
+    },
+    "loom-ruby": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-ruby/SKILL.md",
+      "computedHash": "5783abea0d5551c1f7d416d8e0f1304e38a5e8fbed6c00b794f3057e0c1fff63"
+    },
+    "loom-rust": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-rust/SKILL.md",
+      "computedHash": "19feaa3f269e654f32ee462e90409121871a8e7f3b51f324afec2cb966f05035"
+    },
+    "loom-scala": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-scala/SKILL.md",
+      "computedHash": "cc6ebed347fba96d749343291587afe9f46fcbaa4eab08501e4467bcdfcf4a2f"
+    },
+    "loom-search": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-search/SKILL.md",
+      "computedHash": "e0b87d0c5d08de874db0a6351e410eb54f8102149122b06ca4ec31864c1ef26d"
+    },
+    "loom-security-audit": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-security-audit/SKILL.md",
+      "computedHash": "3b6d0ad6e127696a9427623ebb8f7f85672763cc091a3fda46bd4530bfb6a9fe"
+    },
+    "loom-security-scan": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-security-scan/SKILL.md",
+      "computedHash": "4b3ff478fe63e7a40f24a2686a30c9c3213ac29e9d0409963dc53c9d228b2766"
+    },
+    "loom-serialization": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-serialization/SKILL.md",
+      "computedHash": "944ad8c4492b2189f86b842f30696f5cd5d500796e30abdda95208f3f98e7d8f"
+    },
+    "loom-skills": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-skills/SKILL.md",
+      "computedHash": "a3fb37d51b006dde25b5699d2e385e98191e9d314e38796bc15c682503a1a9a2"
+    },
+    "loom-sql-optimization": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-sql-optimization/SKILL.md",
+      "computedHash": "4e2c5eca82d821787f4bc12117fc99801bb1abfc09e6fad7e59e9a90920e439c"
+    },
+    "loom-swift": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-swift/SKILL.md",
+      "computedHash": "e2ae6bc0dc138decbf3e36c179cffc397af178f22a3a34f2fdccacd048e733bd"
+    },
+    "loom-technical-writing": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-technical-writing/SKILL.md",
+      "computedHash": "d2bad17725d2742469d122a07d557f945b0e179da3a716d4cf72978f365d6aee"
+    },
+    "loom-terraform": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-terraform/SKILL.md",
+      "computedHash": "280c3065110bdc751c2606f56b0d982c8eeb9e6fb87149d1e5aa2ecb253fbdee"
+    },
+    "loom-test-strategy": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-test-strategy/SKILL.md",
+      "computedHash": "7af837f68c720df339efcda62e5f5233543efe79b7c97c506580e639831037f7"
+    },
+    "loom-testing": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-testing/SKILL.md",
+      "computedHash": "ee88b0738a7d5890746967eccde6314ce3ace430c5dc935db19ffb553f97b340"
+    },
+    "loom-threat-model": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-threat-model/SKILL.md",
+      "computedHash": "e46e3b217730d6316b03e4e35cb464f48679fbc2ee3302bd7e6c7103355d7a84"
+    },
+    "loom-typescript": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-typescript/SKILL.md",
+      "computedHash": "d60ab0288e7b30193a52eb6a6bcfa82083825fd3f456934f8c0af479b4079d4c"
+    },
+    "loom-usage": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-usage/SKILL.md",
+      "computedHash": "bbd0770edecfd955378ed25402fc29e9dfc79748b780e5d7b05f2e197052b71c"
+    },
+    "loom-webhooks": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-webhooks/SKILL.md",
+      "computedHash": "beffa1ebec6f60b30b8ad4429c4fd6d30a49ca05b0e6422a7298c38546fd059c"
+    },
+    "loom-wiring-test": {
+      "source": "cosmix/loom",
+      "commit": "7f133712133faf4a97f8dda195d07b903e879ece",
+      "sourceType": "github",
+      "skillPath": "skills/loom-wiring-test/SKILL.md",
+      "computedHash": "37a3570b1cb588c87ef55e715be9881dd886fa7ebb3796dbe9c66b52d42180f9"
+    },
+    "managed-pentesting-with-strix": {
+      "source": "usestrix/strix",
+      "commit": "a1ccf777d80e812edf23fc8b82bdc17def6143ac",
+      "sourceType": "github",
+      "skillPath": "skills/managed-pentesting-with-strix/SKILL.md",
+      "computedHash": "72ff2e9e61e426a08550196c260884ba43f7949f498c56ee896588d2792d8eb8"
+    },
+    "owasp-top-10-testing": {
+      "source": "usestrix/strix",
+      "commit": "a1ccf777d80e812edf23fc8b82bdc17def6143ac",
+      "sourceType": "github",
+      "skillPath": "skills/owasp-top-10-testing/SKILL.md",
+      "computedHash": "dc3518dd62ce6b048dad7a969adfe88ea8e4d8bb8fd9c8a1627b443c8a508996"
+    },
+    "penetration-testing-with-strix": {
+      "source": "usestrix/strix",
+      "commit": "a1ccf777d80e812edf23fc8b82bdc17def6143ac",
+      "sourceType": "github",
+      "skillPath": "skills/penetration-testing-with-strix/SKILL.md",
+      "computedHash": "54ba2e5fabb69e319421fdf6c8bdbd43650b66d0ed592b920f57e60e25d9e809"
+    },
+    "receiving-code-review": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/receiving-code-review/SKILL.md",
+      "computedHash": "528d336858d6f7d22cfcb887a249409ce682cb7d37a939cb15a82f2576a35876"
+    },
+    "requesting-code-review": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/requesting-code-review/SKILL.md",
+      "computedHash": "32bcc25e8c3315d0150f646ee0067c9d4bfbc7719c34012db9c202e17cce8a14"
+    },
+    "subagent-driven-development": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/subagent-driven-development/SKILL.md",
+      "computedHash": "da0ad5e635b6ff70c2b6dbf25e51ae6ca1cad6beebfc61a791195675468c492e"
+    },
+    "systematic-debugging": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/systematic-debugging/SKILL.md",
+      "computedHash": "79ff0583175346e39431b0dc713b223edd1bd7a7ea2b6c8b78b2fb9a3fed6782"
+    },
+    "task-observer": {
+      "source": "rebelytics/one-skill-to-rule-them-all",
+      "commit": "4d7bcd7f042f1cf2bef1ebf2aabdeefae8d740ae",
+      "sourceType": "github",
+      "skillPath": "skills/task-observer/SKILL.md",
+      "computedHash": "98ecb7ccbc57492153496708d056a9ad3da9d1875d97d75dec1a8e1c6c5b5db2"
+    },
+    "test-driven-development": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/test-driven-development/SKILL.md",
+      "computedHash": "2782702b2cf69ace085ed30d067b6f8bfd2d777ad51770fc5bdae9cb5c1b5c04"
+    },
+    "using-git-worktrees": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/using-git-worktrees/SKILL.md",
+      "computedHash": "b69324cb5e5ba5b846fc2ae2811616008dc6f19858245100e472713190d4c9e4"
+    },
+    "using-superpowers": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/using-superpowers/SKILL.md",
+      "computedHash": "6a9104fac7e16c3cec2bc118943aefd331cac35b4cfabd427cea4dc16337c6a5"
+    },
+    "verification-before-completion": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/verification-before-completion/SKILL.md",
+      "computedHash": "09b0e3a4689c1c38a3b8fc6ef57a1d4165aa33c0013d546dbde9dd348941a319"
+    },
+    "web-app-penetration-testing": {
+      "source": "usestrix/strix",
+      "commit": "a1ccf777d80e812edf23fc8b82bdc17def6143ac",
+      "sourceType": "github",
+      "skillPath": "skills/web-app-penetration-testing/SKILL.md",
+      "computedHash": "12d42989bda70f680c0c7b60aa8882f635d59aa7bc24e76eb78cbdf63085cba7"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "ref": "main",
+      "commit": "5a37a6329fbad3666c3207392a6a7c0110e92efb",
+      "sourceType": "github",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "computedHash": "5994e4cfd86144903d2ba750f862b9e36af15e3297aac983679e347b99f6cb71"
+    },
+    "writing-plans": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/writing-plans/SKILL.md",
+      "computedHash": "ef082ddb5354d736059397133b3682e8a0c85c57906affe47c9da354cbb7c91e"
+    },
+    "writing-skills": {
+      "source": "obra/superpowers",
+      "commit": "22f0b463e7a5e579904dd6211a520321035526f7",
+      "sourceType": "github",
+      "skillPath": "skills/writing-skills/SKILL.md",
+      "computedHash": "50d87a4c2c6a9d60156ccfdbe844e0a11678968157e494a8a8c02377c273483a"
+    }
+  }
+}
