@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 echo "🚀 Booting Modular AI God-Mode (OmniRoute Edition)..."
@@ -63,8 +64,8 @@ fi
 # ==========================================
 echo "⚡ Starting OmniRoute gateway on port 20128..."
 
-pkill -f omniroute || true
-omniroute > omniroute.log 2>&1 &
+pkill -f "omniroute serve" 2>/dev/null || true
+omniroute serve > omniroute.log 2>&1 &
 sleep 5
 
 # ==========================================
@@ -83,4 +84,4 @@ fi
 # ==========================================
 echo "🚀 Launching Claude Code..."
 
-omniroute launch -- --continue --dangerously-skip-permissions
+omniroute launch -- --dangerously-skip-permissions
